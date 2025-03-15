@@ -197,8 +197,19 @@ export default function Home() {
     return () => document.removeEventListener("click", handleLinkClick)
   }, [])
 
-  const handleMobileNavClick = () => {
+  const handleMobileNavClick = (href: string) => {
     setIsOpen(false)
+
+    // Add a small delay to allow the mobile menu to close before scrolling
+    setTimeout(() => {
+      const element = document.querySelector(href)
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        })
+      }
+    }, 300)
   }
 
   return (
@@ -293,28 +304,28 @@ export default function Home() {
                 <Link
                   href="#tracking"
                   className="flex items-center py-2 text-base font-medium text-foreground transition-colors hover:text-primary"
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick("#tracking")}
                 >
                   {t.nav.tracking}
                 </Link>
                 <Link
                   href="#services"
                   className="flex items-center py-2 text-base font-medium text-foreground transition-colors hover:text-primary"
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick("#services")}
                 >
                   {t.nav.services}
                 </Link>
                 <Link
                   href="#about"
                   className="flex items-center py-2 text-base font-medium text-foreground transition-colors hover:text-primary"
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick("#about")}
                 >
                   {t.nav.about}
                 </Link>
                 <Link
                   href="#partners"
                   className="flex items-center py-2 text-base font-medium text-foreground transition-colors hover:text-primary"
-                  onClick={handleMobileNavClick}
+                  onClick={() => handleMobileNavClick("#partners")}
                 >
                   {t.nav.partners}
                 </Link>
@@ -327,7 +338,7 @@ export default function Home() {
                     <button
                       onClick={() => {
                         setLanguage("ru")
-                        handleMobileNavClick()
+                        setIsOpen(false)
                       }}
                       className={`flex items-center justify-between rounded-md px-2 py-1 text-sm ${
                         language === "ru" ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"
@@ -339,7 +350,7 @@ export default function Home() {
                     <button
                       onClick={() => {
                         setLanguage("uz")
-                        handleMobileNavClick()
+                        setIsOpen(false)
                       }}
                       className={`flex items-center justify-between rounded-md px-2 py-1 text-sm ${
                         language === "uz" ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"
