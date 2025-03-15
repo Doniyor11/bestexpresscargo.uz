@@ -399,7 +399,7 @@ export default function Home() {
             <div className="space-y-4">
               <Link href="/" className="flex items-center">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo_2023-10-26_22-27-52.jpg-TQJAha39KQNkKn2CkoGNFalDZUTZOy.jpeg"
+                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-2-ZA1nScJElK6tnTutqN7FHQblaXJmfE.png"
                   alt="Best Express Expo Cargo"
                   width={120}
                   height={40}
