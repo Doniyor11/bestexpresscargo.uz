@@ -187,7 +187,7 @@ export default function Home() {
         <div className="container flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/photo_2023-10-26_22-27-52.jpg-TQJAha39KQNkKn2CkoGNFalDZUTZOy.jpeg"
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-2-ZA1nScJElK6tnTutqN7FHQblaXJmfE.png"
               alt="Best Express Expo Cargo"
               width={120}
               height={40}
@@ -241,8 +241,8 @@ export default function Home() {
           <div className="flex h-full flex-col justify-center space-y-4 pt-20">
             <h1 className="max-w-3xl text-4xl font-bold tracking-tighter text-white sm:text-5xl xl:text-6xl/none">
               {language === "ru"
-                ? "RZG new express - ваш надежный курьерский партнер"
-                : "RZG new express - sizning ishonchli kuryer hamkoringiz"}
+                ? "Best express expo - ваш надежный курьерский партнер"
+                : "Best express expo - sizning ishonchli kuryer hamkoringiz"}
             </h1>
             <p className="max-w-[600px] text-lg text-white/90 md:text-xl">
               {language === "ru"
@@ -407,7 +407,7 @@ export default function Home() {
                 />
               </Link>
               <p className="text-sm text-muted-foreground">
-                RZG new express -{" "}
+                Best express expo -{" "}
                 {language === "ru" ? "ваш надежный курьерский партнер" : "sizning ishonchli kuryer hamkoringiz"}
               </p>
             </div>
