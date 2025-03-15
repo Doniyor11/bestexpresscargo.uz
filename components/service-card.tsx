@@ -1,20 +1,25 @@
-import type { ReactNode } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import Image from "next/image"
+import { Card, CardContent } from "@/components/ui/card"
 
 interface ServiceCardProps {
-  icon: ReactNode
+  imageSrc: string
   title: string
   description: string
 }
 
-export function ServiceCard({ icon, title, description }: ServiceCardProps) {
+export function ServiceCard({ imageSrc, title, description }: ServiceCardProps) {
   return (
-    <Card className="flex flex-col items-center text-center">
-      <CardHeader>
-        <div className="flex h-20 w-20 items-center justify-center rounded-full bg-muted">{icon}</div>
-        <CardTitle className="mt-4">{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
+    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <div className="relative h-48 w-full">
+        <Image
+          src={imageSrc || "/placeholder.svg"}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+      <CardContent className="p-5">
+        <h3 className="mb-2 text-xl font-bold">{title}</h3>
         <p className="text-muted-foreground">{description}</p>
       </CardContent>
     </Card>

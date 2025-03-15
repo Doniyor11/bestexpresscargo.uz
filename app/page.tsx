@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Package, Box, Clock, MapPin, Truck, Globe, Phone, Menu } from "lucide-react"
+import { Globe, Phone, Menu } from "lucide-react"
 import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -28,31 +28,27 @@ const content = {
     },
     services: {
       title: "Наши услуги",
-      description: "Мы предлагаем ряд решений по доставке, отвечающих вашим потребностям.",
+      description: "Мы предлагаем широкий спектр профессиональных услуг для удовлетворения ваших потребностей.",
       items: [
         {
-          title: "Экспресс-доставка",
-          description: "Варианты доставки в тот же день и на следующий день для срочных отправлений.",
+          title: "Грузоперевозки",
+          description: "Надежная и своевременная доставка грузов по всему миру с полным отслеживанием.",
+          image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop",
         },
         {
-          title: "Международная доставка",
-          description: "Надежная доставка по всему миру с таможенным оформлением.",
+          title: "Таможенное оформление",
+          description: "Профессиональное сопровождение и оформление всех необходимых таможенных документов.",
+          image: "https://images.unsplash.com/photo-1568234928966-359c35dd8327?q=80&w=2074&auto=format&fit=crop",
         },
         {
-          title: "Специализированная обработка",
-          description: "Особый уход за хрупкими, негабаритными или чувствительными к температуре предметам.",
+          title: "Туры",
+          description: "Организация туристических поездок и экскурсий с индивидуальным подходом.",
+          image: "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?q=80&w=2070&auto=format&fit=crop",
         },
         {
-          title: "Доставка на последнюю милю",
-          description: "Эффективная доставка на последнем этапе до жилых и коммерческих адресов.",
-        },
-        {
-          title: "Запланированная доставка",
-          description: "Выберите удобное для вас время доставки.",
-        },
-        {
-          title: "Объединение посылок",
-          description: "Объедините несколько отправлений, чтобы сэкономить на стоимости доставки.",
+          title: "Бизнес-услуги",
+          description: "Комплексные решения для развития вашего бизнеса и выхода на международные рынки.",
+          image: "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?q=80&w=2069&auto=format&fit=crop",
         },
       ],
     },
@@ -103,31 +99,28 @@ const content = {
     },
     services: {
       title: "Bizning xizmatlar",
-      description: "Biz sizning ehtiyojlaringizga javob beradigan yetkazib berish yechimlarini taklif qilamiz.",
+      description:
+        "Biz sizning ehtiyojlaringizni qondirish uchun keng ko'lamli professional xizmatlarni taklif qilamiz.",
       items: [
         {
-          title: "Tezkor yetkazib berish",
-          description: "Shoshilinch yuborilmalar uchun shu kuni va keyingi kuni yetkazib berish imkoniyatlari.",
+          title: "Yuk tashish",
+          description: "Butun dunyo bo'ylab yuklarni to'liq kuzatuv bilan ishonchli va o'z vaqtida yetkazib berish.",
+          image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop",
         },
         {
-          title: "Xalqaro yetkazib berish",
-          description: "Bojxona rasmiylashtiruvi bilan ishonchli dunyo bo'ylab yetkazib berish.",
+          title: "Bojxona rasmiylashtiruvi",
+          description: "Barcha zarur bojxona hujjatlarini professional yo'l-yo'riq ko'rsatish va rasmiylashtirish.",
+          image: "https://images.unsplash.com/photo-1568234928966-359c35dd8327?q=80&w=2074&auto=format&fit=crop",
         },
         {
-          title: "Maxsus ishlov berish",
-          description: "Mo'rt, katta o'lchamli yoki haroratga sezgir narsalar uchun maxsus g'amxo'rlik.",
+          title: "Sayohatlar",
+          description: "Individual yondashuvga ega turistik sayohatlar va ekskursiyalarni tashkil etish.",
+          image: "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?q=80&w=2070&auto=format&fit=crop",
         },
         {
-          title: "Oxirgi mil yetkazib berish",
-          description: "Turar-joy va tijorat manzillariga samarali oxirgi bosqich yetkazib berish.",
-        },
-        {
-          title: "Rejalashtirilgan yetkazib berish",
-          description: "Qulaylik uchun o'zingizga ma'qul yetkazib berish vaqtini tanlang.",
-        },
-        {
-          title: "Yuborilmalarni birlashtirish",
-          description: "Yetkazib berish xarajatlarini tejash uchun bir nechta yuborilmalarni birlashtiring.",
+          title: "Biznes xizmatlari",
+          description: "Biznesingizni rivojlantirish va xalqaro bozorlarga chiqish uchun kompleks yechimlar.",
+          image: "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?q=80&w=2069&auto=format&fit=crop",
         },
       ],
     },
@@ -395,7 +388,13 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="relative h-[600px] w-full">
-        <Image src="/placeholder.svg?height=800&width=1600" alt="Warehouse" fill className="object-cover" priority />
+        <Image
+          src="https://images.unsplash.com/photo-1566576721346-d4a3b4eaeb55?q=80&w=2000&auto=format&fit=crop"
+          alt="Logistics and delivery service"
+          fill
+          className="object-cover"
+          priority
+        />
         <div className="absolute inset-0 bg-black/40" />
         <div className="container relative h-full">
           <div className="flex h-full flex-col justify-center space-y-4 pt-20">
@@ -430,44 +429,22 @@ export default function Home() {
 
         <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-muted/50">
           <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
+            <div className="flex flex-col items-center justify-center space-y-12">
+              <div className="space-y-2 text-center">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">{t.services.title}</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   {t.services.description}
                 </p>
               </div>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-                <ServiceCard
-                  icon={<Truck className="h-10 w-10 text-primary" />}
-                  title={t.services.items[0].title}
-                  description={t.services.items[0].description}
-                />
-                <ServiceCard
-                  icon={<Globe className="h-10 w-10 text-primary" />}
-                  title={t.services.items[1].title}
-                  description={t.services.items[1].description}
-                />
-                <ServiceCard
-                  icon={<Box className="h-10 w-10 text-primary" />}
-                  title={t.services.items[2].title}
-                  description={t.services.items[2].description}
-                />
-                <ServiceCard
-                  icon={<MapPin className="h-10 w-10 text-primary" />}
-                  title={t.services.items[3].title}
-                  description={t.services.items[3].description}
-                />
-                <ServiceCard
-                  icon={<Clock className="h-10 w-10 text-primary" />}
-                  title={t.services.items[4].title}
-                  description={t.services.items[4].description}
-                />
-                <ServiceCard
-                  icon={<Package className="h-10 w-10 text-primary" />}
-                  title={t.services.items[5].title}
-                  description={t.services.items[5].description}
-                />
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+                {t.services.items.map((service, index) => (
+                  <ServiceCard
+                    key={index}
+                    imageSrc={service.image}
+                    title={service.title}
+                    description={service.description}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -485,7 +462,7 @@ export default function Home() {
                 </div>
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold">{t.about.title}</h3>
-                  <p className="text-muted-foreground">{t.about.history}</p>\
+                  <p className="text-muted-foreground">{t.about.history}</p>
                 </div>
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold">Миссия</h3>
@@ -495,13 +472,68 @@ export default function Home() {
               <div className="space-y-6">
                 <div className="overflow-hidden rounded-lg">
                   <Image
-                    src="/placeholder.svg?height=400&width=600"
+                    src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?q=80&w=2070&auto=format&fit=crop"
                     width={600}
                     height={400}
-                    alt="Company office"
+                    alt="Modern logistics warehouse"
                     className="aspect-video object-cover"
                   />
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="partners" className="w-full py-12 md:py-24 lg:py-32 bg-muted/30">
+          <div className="container px-4 md:px-6">
+            <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                  {language === "ru" ? "Наши партнеры" : "Bizning hamkorlar"}
+                </h2>
+                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                  {language === "ru"
+                    ? "Мы гордимся сотрудничеством с ведущими компаниями в сфере логистики и транспорта."
+                    : "Biz logistika va transport sohasidagi yetakchi kompaniyalar bilan hamkorlik qilishdan faxrlanamiz."}
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+              <div className="bg-white p-6 rounded-lg shadow-sm h-24 w-full flex items-center justify-center">
+                <Image
+                  src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=250&auto=format&fit=crop"
+                  width={120}
+                  height={60}
+                  alt="Partner logo"
+                  className="max-h-12 w-auto object-contain"
+                />
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm h-24 w-full flex items-center justify-center">
+                <Image
+                  src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=250&auto=format&fit=crop"
+                  width={120}
+                  height={60}
+                  alt="Partner logo"
+                  className="max-h-12 w-auto object-contain"
+                />
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm h-24 w-full flex items-center justify-center">
+                <Image
+                  src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=250&auto=format&fit=crop"
+                  width={120}
+                  height={60}
+                  alt="Partner logo"
+                  className="max-h-12 w-auto object-contain"
+                />
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm h-24 w-full flex items-center justify-center">
+                <Image
+                  src="https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?q=80&w=250&auto=format&fit=crop"
+                  width={120}
+                  height={60}
+                  alt="Partner logo"
+                  className="max-h-12 w-auto object-contain"
+                />
               </div>
             </div>
           </div>
@@ -532,10 +564,10 @@ export default function Home() {
               </div>
               <div className="flex items-center justify-center">
                 <Image
-                  src="/placeholder.svg?height=550&width=550"
+                  src="https://images.unsplash.com/photo-1560264280-88b68371db39?q=80&w=2070&auto=format&fit=crop"
                   width={550}
                   height={550}
-                  alt="Contact illustration"
+                  alt="Customer support team"
                   className="rounded-lg object-cover"
                 />
               </div>
