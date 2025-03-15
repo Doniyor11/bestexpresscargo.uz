@@ -2,15 +2,16 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Package, Box, Clock, MapPin, Truck, Globe, Phone, Mail, LocateIcon as Location } from "lucide-react"
+import { Package, Box, Clock, MapPin, Truck, Globe, Phone, Menu } from "lucide-react"
 import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { ServiceCard } from "@/components/service-card"
 import { TrackingForm } from "@/components/tracking-form"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { ContactForm } from "@/components/contact-form"
 
 // Language content
 const content = {
@@ -71,15 +72,22 @@ const content = {
       subject: "Тема",
       message: "Сообщение",
       send: "Отправить сообщение",
+      success: "Сообщение отправлено",
+      error: "Ошибка",
+      requiredFields: "Пожалуйста, заполните все обязательные поля",
     },
     footer: {
       quickLinks: "Быстрые ссылки",
       contactInfo: "Контактная информация",
-      address: "ул. Амира Темура, 108, Ташкент, Узбекистан",
-      phone: "+998 71 123 4567",
-      email: "info@bestexpressexpo.com",
-      copyright: "© 2025 RZG New Express. Все права защищены.",
-      followUs: "Следите за нами",
+      phone: "+998 97 757 57 47",
+      telegram: "@jakhonshokh",
+      copyright: "© 2025 Best Express Expo. Все права защищены.",
+    },
+    mobileMenu: {
+      title: "Меню",
+      language: "Язык",
+      russian: "Русский",
+      uzbek: "O'zbek",
     },
   },
   uz: {
@@ -139,21 +147,29 @@ const content = {
       subject: "Mavzu",
       message: "Xabar",
       send: "Xabar yuborish",
+      success: "Xabar yuborildi",
+      error: "Xato",
+      requiredFields: "Iltimos, barcha majburiy maydonlarni to'ldiring",
     },
     footer: {
       quickLinks: "Tezkor havolalar",
       contactInfo: "Aloqa ma'lumotlari",
-      address: "Amir Temur ko'chasi, 108, Toshkent, O'zbekiston",
-      phone: "+998 71 123 4567",
-      email: "info@bestexpressexpo.com",
-      copyright: "© 2025 RZG New Express. Barcha huquqlar himoyalangan.",
-      followUs: "Bizni kuzatib boring",
+      phone: "+998 97 757 57 47",
+      telegram: "@jakhonshokh",
+      copyright: "© 2025 Best Express Expo. Barcha huquqlar himoyalangan.",
+    },
+    mobileMenu: {
+      title: "Menyu",
+      language: "Til",
+      russian: "Русский",
+      uzbek: "O'zbek",
     },
   },
 }
 
 export default function Home() {
   const [language, setLanguage] = useState<"ru" | "uz">("ru")
+  const [isOpen, setIsOpen] = useState(false)
   const t = content[language]
 
   useEffect(() => {
@@ -181,17 +197,47 @@ export default function Home() {
     return () => document.removeEventListener("click", handleLinkClick)
   }, [])
 
+  const handleMobileNavClick = () => {
+    setIsOpen(false)
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
+      {/* Header Top */}
+      <div className="w-full bg-background border-b">
+        <div className="container flex justify-end h-10 items-center gap-6 text-sm text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <Phone className="h-4 w-4" />
+            <span>+998 97 757 57 47</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-4 w-4"
+            >
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <span>@jakhonshokh</span>
+          </div>
+        </div>
+      </div>
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-20 items-center justify-between">
           <Link href="/" className="flex items-center">
             <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-2-ZA1nScJElK6tnTutqN7FHQblaXJmfE.png"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-2-ZA1nScJElK6tnTutqN7FHQblaXJmfE.png"
               alt="Best Express Expo Cargo"
               width={120}
               height={40}
-              className="h-12 w-auto"
+              className="h-16 w-auto"
               priority
             />
           </Link>
@@ -230,6 +276,109 @@ export default function Home() {
               </DropdownMenuContent>
             </DropdownMenu>
           </nav>
+
+          {/* Mobile Menu */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetHeader className="mb-6">
+                <SheetTitle className="text-left text-xl font-bold">{t.mobileMenu.title}</SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col space-y-4">
+                <Link
+                  href="#tracking"
+                  className="flex items-center py-2 text-base font-medium text-foreground transition-colors hover:text-primary"
+                  onClick={handleMobileNavClick}
+                >
+                  {t.nav.tracking}
+                </Link>
+                <Link
+                  href="#services"
+                  className="flex items-center py-2 text-base font-medium text-foreground transition-colors hover:text-primary"
+                  onClick={handleMobileNavClick}
+                >
+                  {t.nav.services}
+                </Link>
+                <Link
+                  href="#about"
+                  className="flex items-center py-2 text-base font-medium text-foreground transition-colors hover:text-primary"
+                  onClick={handleMobileNavClick}
+                >
+                  {t.nav.about}
+                </Link>
+                <Link
+                  href="#partners"
+                  className="flex items-center py-2 text-base font-medium text-foreground transition-colors hover:text-primary"
+                  onClick={handleMobileNavClick}
+                >
+                  {t.nav.partners}
+                </Link>
+
+                <Separator className="my-2" />
+
+                <div className="space-y-2">
+                  <h4 className="text-sm font-medium text-muted-foreground">{t.mobileMenu.language}</h4>
+                  <div className="flex flex-col space-y-2">
+                    <button
+                      onClick={() => {
+                        setLanguage("ru")
+                        handleMobileNavClick()
+                      }}
+                      className={`flex items-center justify-between rounded-md px-2 py-1 text-sm ${
+                        language === "ru" ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      <span>{t.mobileMenu.russian}</span>
+                      {language === "ru" && <div className="h-2 w-2 rounded-full bg-primary"></div>}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setLanguage("uz")
+                        handleMobileNavClick()
+                      }}
+                      className={`flex items-center justify-between rounded-md px-2 py-1 text-sm ${
+                        language === "uz" ? "bg-primary/10 text-primary" : "text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      <span>{t.mobileMenu.uzbek}</span>
+                      {language === "uz" && <div className="h-2 w-2 rounded-full bg-primary"></div>}
+                    </button>
+                  </div>
+                </div>
+
+                <Separator className="my-2" />
+
+                <div className="space-y-2 pt-4">
+                  <div className="flex items-center gap-2 text-sm">
+                    <Phone className="h-4 w-4 text-primary" />
+                    <span>+998 97 757 57 47</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-4 w-4 text-primary"
+                    >
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                    <span>@jakhonshokh</span>
+                  </div>
+                </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </header>
 
@@ -241,8 +390,8 @@ export default function Home() {
           <div className="flex h-full flex-col justify-center space-y-4 pt-20">
             <h1 className="max-w-3xl text-4xl font-bold tracking-tighter text-white sm:text-5xl xl:text-6xl/none">
               {language === "ru"
-                ? "Best express expo - ваш надежный курьерский партнер"
-                : "Best express expo - sizning ishonchli kuryer hamkoringiz"}
+                ? "Best Express Expo - ваш надежный курьерский партнер"
+                : "Best Express Expo - sizning ishonchli kuryer hamkoringiz"}
             </h1>
             <p className="max-w-[600px] text-lg text-white/90 md:text-xl">
               {language === "ru"
@@ -325,7 +474,7 @@ export default function Home() {
                 </div>
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold">{t.about.title}</h3>
-                  <p className="text-muted-foreground">{t.about.history}</p>
+                  <p className="text-muted-foreground">{t.about.history}</p>\
                 </div>
                 <div className="space-y-4">
                   <h3 className="text-xl font-bold">Миссия</h3>
@@ -357,26 +506,18 @@ export default function Home() {
                     {t.contact.description}
                   </p>
                 </div>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div className="space-y-2">
-                      <Input placeholder={t.contact.name} />
-                    </div>
-                    <div className="space-y-2">
-                      <Input placeholder={t.contact.email} />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Input placeholder={t.contact.subject} />
-                  </div>
-                  <div className="space-y-2">
-                    <textarea
-                      className="flex min-h-[120px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      placeholder={t.contact.message}
-                    />
-                  </div>
-                  <Button className="w-full sm:w-auto">{t.contact.send}</Button>
-                </div>
+                <ContactForm
+                  translations={{
+                    name: t.contact.name,
+                    email: t.contact.email,
+                    subject: t.contact.subject,
+                    message: t.contact.message,
+                    send: t.contact.send,
+                    success: t.contact.success,
+                    error: t.contact.error,
+                    requiredFields: t.contact.requiredFields,
+                  }}
+                />
               </div>
               <div className="flex items-center justify-center">
                 <Image
@@ -399,15 +540,15 @@ export default function Home() {
             <div className="space-y-4">
               <Link href="/" className="flex items-center">
                 <Image
-                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-2-ZA1nScJElK6tnTutqN7FHQblaXJmfE.png"
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-2-ZA1nScJElK6tnTutqN7FHQblaXJmfE.png"
                   alt="Best Express Expo Cargo"
                   width={120}
                   height={40}
-                  className="h-10 w-auto"
+                  className="h-16 w-auto"
                 />
               </Link>
               <p className="text-sm text-muted-foreground">
-                Best express expo -{" "}
+                Best Express Expo -{" "}
                 {language === "ru" ? "ваш надежный курьерский партнер" : "sizning ishonchli kuryer hamkoringiz"}
               </p>
             </div>
@@ -435,17 +576,26 @@ export default function Home() {
             <div className="space-y-4">
               <h3 className="text-lg font-medium">{t.footer.contactInfo}</h3>
               <div className="space-y-2 text-sm text-muted-foreground">
-                <div className="flex items-start gap-2">
-                  <Location className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>{t.footer.address}</span>
-                </div>
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4 shrink-0 text-primary" />
                   <span>{t.footer.phone}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 shrink-0 text-primary" />
-                  <span>{t.footer.email}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="h-4 w-4 shrink-0 text-primary"
+                  >
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>{t.footer.telegram}</span>
                 </div>
               </div>
             </div>

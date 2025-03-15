@@ -101,6 +101,7 @@ export function TrackingForm() {
   return (
     <div className="w-full max-w-3xl mx-auto">
       <Card className="overflow-hidden border-none shadow-lg">
+     
         <CardContent className="p-6 space-y-6">
           <form onSubmit={handleSubmit} className="flex space-x-2">
             <Input
@@ -138,7 +139,7 @@ export function TrackingForm() {
               ) : (
                 <>
                   <Search className="h-4 w-4 mr-2" />
-                  Отследить
+                  Track
                 </>
               )}
             </Button>
