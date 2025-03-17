@@ -7,7 +7,7 @@ import { Search, Package, Truck, AlertCircle, FileText, Check } from "lucide-rea
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 interface TrackingHistoryItem {
@@ -51,7 +51,16 @@ export function TrackingForm() {
         body: JSON.stringify({ trackingNumber }),
       })
 
-      const data = await response.json()
+      const responseText = await response.text()
+      let data
+
+      try {
+        // Try to parse the JSON response
+        data = JSON.parse(responseText)
+      } catch (parseError) {
+        console.error("Error parsing response:", parseError, "Response text:", responseText)
+        throw new Error("Failed to parse server response. Please try again later.")
+      }
 
       if (!response.ok) {
         throw new Error(data.error || "Failed to track package")
@@ -59,7 +68,10 @@ export function TrackingForm() {
 
       setTrackingData(data.data)
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred")
+      console.error("Tracking form error:", err)
+      setError(
+        err instanceof Error ? err.message : "An error occurred while tracking your package. Please try again later.",
+      )
     } finally {
       setIsLoading(false)
     }
@@ -101,7 +113,6 @@ export function TrackingForm() {
   return (
     <div className="w-full max-w-3xl mx-auto">
       <Card className="overflow-hidden border-none shadow-lg">
-     
         <CardContent className="p-6 space-y-6">
           <form onSubmit={handleSubmit} className="flex space-x-2">
             <Input
